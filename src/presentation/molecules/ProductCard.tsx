@@ -7,8 +7,9 @@ import { toggleFavourite } from '../../store/slices/favouritesSlice';
 
 interface ProductCardProps {
   product: {
+    description: string;
     id: number;
-    title: string; // matches db.json
+    title: string; 
     price: number;
     image: string;
   };
@@ -49,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <button
           onClick={() =>
             dispatch(
-              addItem({ productId: product.id, title: product.title, price: product.price,  description: product.description, // <-- add this
+              addItem({ productId: product.id, title: product.title, price: product.price,  description: product.description, 
         image: product.image,    quantity: 1 })
             )
           }
