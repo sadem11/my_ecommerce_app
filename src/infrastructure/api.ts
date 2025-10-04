@@ -50,20 +50,15 @@
 
 import { Product } from '@/domain/models';
 
-
 export async function fetchProducts(): Promise<Product[]> {
-  const res = await fetch('db.json');
+  const res = await fetch('/db.json');
   if (!res.ok) throw new Error('Failed to fetch products');
   return res.json();
 }
 
-
 export async function fetchProductById(id: number): Promise<Product> {
   const res = await fetch('/db.json');
-  if (!res.ok) throw new Error('Failed to fetch products');
-  const products: Product[] = await res.json();
-  const product = products.find((p) => p.id === id);
-  if (!product) throw new Error('Product not found');
-  return product;
+  if (!res.ok) throw new Error('Failed to fetch product');
+  const products = await res.json();
+  return products.find((p: Product) => p.id === id);
 }
-
